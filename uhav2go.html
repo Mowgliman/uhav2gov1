@@ -1,0 +1,56 @@
+<html>
+ <head>
+ 
+	 <title> uhav2go </title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta name="description" content="NZ Topo50 Web Mercator EPSG:3857 demo(Leaflet)" />
+ <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+ <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+<link rel="stylesheet" href="L.Control.Basemaps.css" />
+   <script src="L.Control.Basemaps-min.js"></script>
+
+
+ </head>
+ <body>
+  <div id="map"></div>
+ </body>
+<style>
+html, body {
+ height:100%;
+ padding:0;
+ margin:0;
+}
+#map {
+ height: 100%;
+}
+</style>
+<script>
+// Enter your LDS API key
+var APIKey = '716b35ad2eaf4d898f0477885e00e903';
+
+// LDS tile URL
+//var urlTemplate = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+var urlTemplate = 'http://tiles-a.data-cdn.linz.govt.nz/services;key=' + APIKey + '/tiles/v4/layer=1511/EPSG:3857/{z}/{x}/{y}.png'
+//var urlTemplate = 'http://tiles-{s}.data-cdn.linz.govt.nz/services;key=' + APIKey + '/tiles/v4/layer=767/EPSG:3857/{z}/{x}/{y}.png'
+
+var settings = {
+  maxZoom: 17,
+  continuousWorld: true,
+  attribution: 'Sourced from LINZ. CC-BY 3.0',
+  subdomains:'abcd'
+};
+
+var map = new L.Map('map', {
+ crs: L.CRS.EPSG3857,
+ continuousWorld: true,
+ worldCopyJump: false,
+  zoomControl: true
+});
+
+var tilelayer = new L.TileLayer(urlTemplate, settings);
+map.addLayer(tilelayer);
+
+map.setView([-21.233542278050376,200.22085189819333], 13);
+</script> 
+</html>
